@@ -4,19 +4,23 @@ import { useRef, useState } from "react";
 import { Configuration, OpenAIApi } from "https://cdn.skypack.dev/openai";
 
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 
 const ChatContent = styled.div`
-  height: 350px;
+  width: 400px;
+  height: 600px;
   overflow-y: scroll;
+  background-color: #a9a9a9;
+  border-radius: 10px;
+  padding: 10px;
 `;
 
 const Line = styled.div`
   width: 100%;
   height: auto;
-  margin-top: 10px;
+  margin: 0px 0px 0px 0px;
   display: flex;
   flex-direction: column;
 `;
@@ -30,11 +34,33 @@ const ChatBox = styled.span`
 const Mine = styled.span`
   display: block;
   margin-left: auto;
+  background: #2e2e2e;
+  padding: 10px;
+
+  max-width: 200px;
+  border-radius: 5px;
+  word-break: break-all;
 `;
 
 const Other = styled.span`
   display: block;
   margin-right: auto;
+  background: #6d6d6d;
+  padding: 10px;
+  max-width: 200px;
+  border-radius: 5px;
+  word-break: break-all;
+`;
+const WrapInput = styled.div`
+  margin: -50px 0px 0px 0px;
+`;
+const Input = styled.input`
+  width: 300px;
+  height: 25px;
+  border-radius: 5px;
+`;
+const Button = styled.button`
+  font-size: 12px;
 `;
 
 const AiChatting = () => {
@@ -84,6 +110,7 @@ const AiChatting = () => {
 
   return (
     <>
+      <p>AI</p>
       <ChatContent>
         <Line>
           {messages.map((message, idx) => {
@@ -95,10 +122,12 @@ const AiChatting = () => {
           })}
         </Line>
       </ChatContent>
-      <input id="input" value={text} onChange={onChangeHandler} />
-      <button id="send" ref={Ref} onClick={onSendHandler}>
-        전송
-      </button>
+      <WrapInput>
+        <Input id="input" value={text} onChange={onChangeHandler} />
+        <Button id="send" ref={Ref} onClick={onSendHandler}>
+          전송
+        </Button>
+      </WrapInput>
     </>
   );
 };
